@@ -1,9 +1,20 @@
-name: deploy
+name: Deploy static content to GitHub Pages
 
 on:
   push:
     branches:
       - main
+
+# Permissionの設定
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Actions重複起動の阻止
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
 
 jobs:
   deploy:
